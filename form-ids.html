@@ -1,0 +1,55 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<dom-module id="form-ids">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <slot>
+      <paper-input></paper-input>
+      <paper-button on-click="addName">Agregar</paper-button>
+      <paper-button on-click="cancelOne">Cancelar</paper-button>
+    </slot>
+  </template>
+
+  <script>
+    /**
+     * `form-ids`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class FormIds extends Polymer.Element {
+      static get is() { return 'form-ids'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'form-ids'
+          }
+        };
+      }
+
+      addName(){
+        this.dispatchEvent(new CustomEvent('addOne',{
+          bubbles:true,
+        }));
+        console.log('hola');
+      };
+
+      cancelOne(){
+        this.dispatchEvent(new CustomEvent('cancelO',{
+          bubbles:true,
+        }));
+        console.log('adios');
+      };
+    }
+
+    window.customElements.define(FormIds.is, FormIds);
+  </script>
+</dom-module>
