@@ -10,8 +10,8 @@
     </style>
     <slot>
       <paper-input value = {{valueInput::input}} pattern = "^[A-z/s]{1,10}" auto-validate required error-message="Esta mal"></paper-input>
-      <paper-button on-click="addName">Agregar</paper-button>
-      <paper-button on-click="cancelOne">Cancelar</paper-button>
+      <paper-button >Agregar</paper-button>
+      <paper-button >Cancelar</paper-button>
     </slot>
   </template>
 
@@ -31,19 +31,22 @@
           valueInput: {
             type: String,
             value: ''
+            notify:true,
+            reflectToAtribute:true
           }
         };
       }
 
       addName(){
-        this.dispatchEvent(new CustomEvent('addOne',{
+        this.dispatchEvent(new CustomEvent('event-add',{
           bubbles:true,
+          composed:true,
+          detail: this.valueInput
         }));
-        console.log(this.valueInput);
       };
 
       cancelOne(){
-        this.dispatchEvent(new CustomEvent('cancelO',{
+        this.dispatchEvent(new CustomEvent('evnt-cancel',{
           bubbles:true,
         }));
         console.log('adios');
