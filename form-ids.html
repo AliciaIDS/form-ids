@@ -9,7 +9,7 @@
       }
     </style>
     <slot>
-      <paper-input></paper-input>
+      <paper-input value = {{valueInput::input}} pattern = "^[A-z/s]{1,10}" auto-validate required error-message="Esta mal"></paper-input>
       <paper-button on-click="addName">Agregar</paper-button>
       <paper-button on-click="cancelOne">Cancelar</paper-button>
     </slot>
@@ -28,9 +28,9 @@
       static get is() { return 'form-ids'; }
       static get properties() {
         return {
-          prop1: {
+          valueInput: {
             type: String,
-            value: 'form-ids'
+            value: ''
           }
         };
       }
@@ -39,7 +39,7 @@
         this.dispatchEvent(new CustomEvent('addOne',{
           bubbles:true,
         }));
-        console.log('hola');
+        console.log(this.valueInput);
       };
 
       cancelOne(){
